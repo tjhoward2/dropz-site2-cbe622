@@ -635,8 +635,36 @@ section { padding: clamp(64px, 8vw, 110px) 0; }
   box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.4);
   white-space: nowrap;
 }
-.phone-hud-tl { top: 14%; right: calc(100% + 18px); left: auto; }
-.phone-hud-br { bottom: 22%; left: calc(100% + 18px); right: auto; }
+.phone-hud-tl { top: 14%; right: calc(100% + 22px); left: auto; }
+.phone-hud-br { bottom: 22%; left: calc(100% + 22px); right: auto; }
+
+/* Connector lines from HUD to phone edge */
+.phone-hud-tl::after,
+.phone-hud-br::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(to right, rgba(0, 240, 255, 0), var(--cyan));
+  transform: translateY(-50%);
+}
+.phone-hud-tl::after { left: 100%; width: 22px; }
+.phone-hud-br::after { right: 100%; width: 22px; background: linear-gradient(to left, rgba(0, 240, 255, 0), var(--cyan)); }
+
+/* Anchor dot at the phone-edge end of each connector */
+.phone-hud-tl::before,
+.phone-hud-br::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan), 0 0 4px #fff;
+}
+.phone-hud-tl::before { left: calc(100% + 22px); transform: translate(-50%, -50%); }
+.phone-hud-br::before { right: calc(100% + 22px); transform: translate(50%, -50%); }
 .mockup-caption {
   position: relative;
   text-align: center; z-index: 3;
@@ -655,6 +683,9 @@ section { padding: clamp(64px, 8vw, 110px) 0; }
   .phone-glow { width: 360px; height: 360px; }
   .phone-hud-tl { top: -16%; right: auto; left: 0; }
   .phone-hud-br { bottom: -16%; left: auto; right: 0; }
+  /* Connectors don't make sense when HUDs are stacked above/below */
+  .phone-hud-tl::after, .phone-hud-tl::before,
+  .phone-hud-br::after, .phone-hud-br::before { display: none; }
 }
 
 .feature-grid {
