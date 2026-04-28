@@ -133,7 +133,7 @@ main, header, footer, section { position: relative; z-index: 1; }
    Typography
    ========================================================= */
 h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink-100); margin: 0 0 0.5em; line-height: 1.1; letter-spacing: -0.02em; }
-h1 { font-family: var(--font-brand); font-size: clamp(2.6rem, 6vw, 5rem); font-weight: 800; line-height: 0.95; letter-spacing: 0; text-transform: uppercase; }
+h1 { font-family: var(--font-brand); font-size: clamp(2.2rem, 4.6vw, 4rem); font-weight: 800; line-height: 0.98; letter-spacing: 0; text-transform: uppercase; }
 h2 { font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 600; }
 h3 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 600; letter-spacing: -0.01em; }
 h4 { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.005em; }
@@ -546,6 +546,102 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 /* =========================================================
    Platform / Features
    ========================================================= */
+/* Platform showcase — app preview alongside copy */
+.platform-showcase {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+  margin-bottom: clamp(56px, 7vw, 96px);
+}
+.platform-showcase-copy h3 {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.platform-showcase-copy p {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: var(--ink-200);
+}
+.platform-features {
+  list-style: none; padding: 0;
+  margin: 24px 0 0;
+  display: grid; gap: 14px;
+}
+.platform-features li {
+  display: flex; gap: 14px; align-items: flex-start;
+  font-size: 0.95rem; color: var(--ink-300);
+  line-height: 1.55;
+}
+.platform-features li strong { color: var(--ink-100); font-weight: 600; }
+.platform-features .dot {
+  width: 8px; height: 8px; border-radius: 999px;
+  background: var(--cyan); box-shadow: 0 0 12px var(--cyan);
+  flex-shrink: 0; margin-top: 8px;
+}
+.platform-features li:nth-child(2) .dot { background: var(--violet); box-shadow: 0 0 12px var(--violet); }
+.platform-features li:nth-child(3) .dot { background: var(--magenta); box-shadow: 0 0 12px var(--magenta); }
+.platform-features li:nth-child(4) .dot { background: var(--lime); box-shadow: 0 0 12px var(--lime); }
+
+.platform-showcase-visual {
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+  min-height: 600px;
+}
+.platform-showcase-visual img {
+  position: relative; z-index: 2;
+  max-width: 360px; width: 100%; height: auto;
+  border-radius: 42px;
+  filter:
+    drop-shadow(0 40px 80px rgba(124, 92, 255, 0.35))
+    drop-shadow(0 0 60px rgba(0, 240, 255, 0.18));
+}
+.phone-glow {
+  position: absolute;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(124, 92, 255, 0.35), transparent 60%),
+    radial-gradient(circle at 30% 70%, rgba(0, 240, 255, 0.22), transparent 65%);
+  filter: blur(40px);
+  z-index: 1;
+  animation: phoneGlowPulse 6s ease-in-out infinite;
+}
+@keyframes phoneGlowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+.phone-hud {
+  position: absolute; z-index: 3;
+  background: rgba(10, 13, 26, 0.78);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: var(--font-mono); font-size: 0.74rem;
+  color: var(--ink-100);
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.4);
+}
+.phone-hud-tl { top: 8%; left: -4%; }
+.phone-hud-br { bottom: 12%; right: -4%; }
+.mockup-caption {
+  position: absolute; bottom: -28px; left: 0; right: 0;
+  text-align: center; z-index: 3;
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-400);
+}
+
+@media (max-width: 880px) {
+  .platform-showcase { grid-template-columns: 1fr; }
+  .platform-showcase-visual { min-height: 540px; }
+  .phone-glow { width: 380px; height: 380px; }
+  .phone-hud-tl { left: 4%; }
+  .phone-hud-br { right: 4%; }
+}
+
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1318,8 +1414,29 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">02 — Platform</span>
-      <h2>Five layers that make space programmable.</h2>
-      <p class="lead">A modular architecture brands and partners can adopt incrementally &mdash; from map embed, to full SDK, to data and personalization.</p>
+      <h2>An SDK. Not another app.</h2>
+      <p class="lead">DROPZ is infrastructure delivered as an embeddable SDK. Partners ship spatial engagement inside their existing apps &mdash; campus apps, telecom apps, fan apps, media apps &mdash; in days, not quarters.</p>
+    </div>
+
+    <div class="platform-showcase">
+      <div class="platform-showcase-copy reveal">
+        <span class="eyebrow" style="margin-bottom:18px;">SDK · Reference experience</span>
+        <h3>The experience your app can power.</h3>
+        <p>DROPZ ships as an embeddable SDK. We don't compete with your app &mdash; we power it. The mockup shown is a reference of what a partner app, campus app, or telecom client can deliver to their users in days, using our map, drops, and rewards primitives.</p>
+        <ul class="platform-features">
+          <li><span class="dot"></span><span><strong>Branded avatar UX</strong> &mdash; identity and progression that lives inside your app, not ours.</span></li>
+          <li><span class="dot"></span><span><strong>Location-anchored drops</strong> &mdash; brand pins, point values, and live engagement zones rendered through our SDK.</span></li>
+          <li><span class="dot"></span><span><strong>Nearby Drop notifications</strong> &mdash; live-radius alerts convert foot traffic into measurable engagement, fired from your app.</span></li>
+          <li><span class="dot"></span><span><strong>Rewards economy</strong> &mdash; points, redemptions, and brand activations attributed end-to-end.</span></li>
+        </ul>
+      </div>
+      <div class="platform-showcase-visual reveal reveal-delay-2">
+        <div class="phone-glow"></div>
+        <img src="app-preview.png" alt="Reference mockup of a partner app embedding the DROPZ SDK: avatar, location-based brand drops, and rewards" />
+        <div class="phone-hud phone-hud-tl"><span class="pulse-dot"></span> SDK · Drops nearby</div>
+        <div class="phone-hud phone-hud-br"><span class="pulse-dot"></span> +250 pts earned</div>
+        <div class="mockup-caption">Reference UI · Partner SDK implementation (mockup)</div>
+      </div>
     </div>
 
     <div class="feature-grid">
@@ -1337,7 +1454,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
         <h3>SDK Integration</h3>
-        <p>Partners embed DROPZ inside existing apps in days, not quarters. iOS, Android, Web. No need to ship another app to the consumer.</p>
+        <p>The primary delivery model. Partners embed DROPZ inside existing apps in days, not quarters. iOS, Android, Web. We power your app — we never compete with it.</p>
       </div>
       <div class="card reveal reveal-delay-2">
         <span class="feature-tag">Layer 03</span>
