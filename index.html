@@ -603,6 +603,9 @@ section { padding: clamp(64px, 8vw, 110px) 0; }
   filter:
     drop-shadow(0 40px 80px rgba(124, 92, 255, 0.35))
     drop-shadow(0 0 60px rgba(0, 240, 255, 0.18));
+  /* Soften the top phone-bezel area so it blends into the page */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 5%);
+          mask-image: linear-gradient(to bottom, transparent 0%, #000 5%);
 }
 .phone-glow {
   position: absolute;
@@ -681,11 +684,8 @@ section { padding: clamp(64px, 8vw, 110px) 0; }
   .platform-showcase { grid-template-columns: 1fr; }
   .phone-frame { max-width: 260px; }
   .phone-glow { width: 360px; height: 360px; }
-  .phone-hud-tl { top: -16%; right: auto; left: 0; }
-  .phone-hud-br { bottom: -16%; left: auto; right: 0; }
-  /* Connectors don't make sense when HUDs are stacked above/below */
-  .phone-hud-tl::after, .phone-hud-tl::before,
-  .phone-hud-br::after, .phone-hud-br::before { display: none; }
+  /* Hide HUDs entirely on mobile — phone speaks for itself, no room for side annotations */
+  .phone-hud-tl, .phone-hud-br { display: none; }
 }
 
 .feature-grid {
