@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#05060f" />
+<title>DROPZ — Programmable Digital Real Estate for the Real World</title>
+<meta name="description" content="DROPZ transforms physical environments into programmable digital real estate. Infrastructure for monetizing presence across campuses, events, stadiums, cities, and telecom apps." />
+
+<!-- Open Graph -->
+<meta property="og:title" content="DROPZ — Monetizing Presence" />
+<meta property="og:description" content="Programmable digital real estate for the real world." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="og-image.png" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="shortcut icon" href="favicon.ico" />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Saira+Condensed:wght@500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* =========================================================
+   DROPZ — Design System
+   ========================================================= */
+:root {
+  /* Palette — DROPZ v1: deep navy-black + cyan/violet/magenta accents */
+  --bg-0: #05060f;
+  --bg-1: #0a0d1a;
+  --bg-2: #11142a;
+  --bg-3: #161a36;
+
+  --ink-100: #f5f7ff;
+  --ink-200: #d4d8ee;
+  --ink-300: #9ea4c4;
+  --ink-400: #6b7290;
+  --ink-500: #444a66;
+
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.05);
+
+  /* Accents */
+  --cyan: #00f0ff;
+  --cyan-soft: rgba(0, 240, 255, 0.22);
+  --violet: #7c5cff;
+  --violet-soft: rgba(124, 92, 255, 0.22);
+  --magenta: #ff3ea5;
+  --magenta-soft: rgba(255, 62, 165, 0.25);
+  --lime: #b6ff3c;
+
+  /* Gradients */
+  --grad-primary: linear-gradient(135deg, #00f0ff 0%, #7c5cff 60%, #ff3ea5 100%);
+  --grad-cool: linear-gradient(135deg, #00f0ff 0%, #7c5cff 100%);
+  --grad-warm: linear-gradient(135deg, #7c5cff 0%, #ff3ea5 100%);
+  --grad-text: linear-gradient(90deg, #ffffff 0%, #c8d0ff 50%, #00f0ff 100%);
+
+  /* Typography */
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-brand: 'Saira Condensed', 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Layout */
+  --container: 1200px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* =========================================================
+   Reset
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-200);
+  background: var(--bg-0);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input, textarea, select { font-family: inherit; }
+::selection { background: var(--cyan); color: #000; }
+
+/* Ambient page background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(1200px 800px at 80% -10%, rgba(124, 92, 255, 0.18), transparent 60%),
+    radial-gradient(900px 600px at -10% 20%, rgba(0, 240, 255, 0.12), transparent 60%),
+    radial-gradient(800px 600px at 50% 110%, rgba(255, 62, 165, 0.10), transparent 60%);
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 80%);
+}
+
+main, header, footer, section { position: relative; z-index: 1; }
+
+/* =========================================================
+   Typography
+   ========================================================= */
+h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink-100); margin: 0 0 0.5em; line-height: 1.1; letter-spacing: -0.02em; }
+h1 { font-family: var(--font-brand); font-size: clamp(2.6rem, 6vw, 5rem); font-weight: 800; line-height: 0.95; letter-spacing: 0; text-transform: uppercase; }
+h2 { font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 600; }
+h3 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 600; letter-spacing: -0.01em; }
+h4 { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.005em; }
+p { margin: 0 0 1em; color: var(--ink-300); }
+.lead { font-size: clamp(1.05rem, 1.4vw, 1.25rem); color: var(--ink-200); line-height: 1.55; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  padding: 6px 12px;
+  border: 1px solid var(--cyan-soft);
+  border-radius: 999px;
+  background: rgba(0, 240, 255, 0.06);
+}
+.eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
+.text-grad { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.text-cyan { color: var(--cyan); }
+.text-violet { color: var(--violet); }
+.text-magenta { color: var(--magenta); }
+.muted { color: var(--ink-400); }
+
+/* =========================================================
+   Layout
+   ========================================================= */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+section { padding: clamp(80px, 10vw, 140px) 0; }
+.section-head { max-width: 760px; margin: 0 auto clamp(48px, 6vw, 80px); text-align: center; }
+.section-head .eyebrow { margin-bottom: 18px; }
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), background 0.25s, border-color 0.25s, color 0.25s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary {
+  background: var(--grad-primary);
+  color: #04050a;
+  font-weight: 600;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset, 0 12px 30px -12px rgba(124, 92, 255, 0.6), 0 0 40px -10px rgba(0, 240, 255, 0.4);
+}
+.btn-primary:hover { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18) inset, 0 18px 40px -10px rgba(124, 92, 255, 0.7), 0 0 60px -10px rgba(0, 240, 255, 0.55); }
+.btn-secondary {
+  background: var(--glass);
+  color: var(--ink-100);
+  border: 1px solid var(--line-strong);
+  backdrop-filter: blur(10px);
+}
+.btn-secondary:hover { background: var(--glass-2); border-color: var(--cyan-soft); color: var(--cyan); }
+.btn-ghost { background: transparent; color: var(--ink-200); padding: 12px 16px; }
+.btn-ghost:hover { color: var(--cyan); }
+.btn .arrow { display: inline-block; transition: transform 0.25s var(--ease-out); }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* =========================================================
+   Cards & surfaces
+   ========================================================= */
+.card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.35s var(--ease-out), border-color 0.35s, background 0.35s;
+  overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.0), rgba(124, 92, 255, 0.0));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  transition: background 0.35s;
+  pointer-events: none;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: transparent;
+}
+.card:hover::before {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.6), rgba(124, 92, 255, 0.6) 50%, rgba(255, 62, 165, 0.4));
+}
+.card .icon {
+  width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid var(--cyan-soft);
+  color: var(--cyan);
+  margin-bottom: 18px;
+}
+.card h3 { margin-bottom: 10px; }
+.card p { margin-bottom: 0; font-size: 0.95rem; }
+
+/* =========================================================
+   Header / Nav
+   ========================================================= */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 14px 0;
+  transition: background 0.3s, border-color 0.3s, padding 0.3s;
+  border-bottom: 1px solid transparent;
+}
+.site-header.scrolled {
+  background: rgba(5, 6, 15, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--line);
+}
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-brand); font-weight: 800; font-size: 1.25rem; letter-spacing: 0.06em; color: var(--ink-100); text-transform: uppercase; }
+.brand .logo {
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  background: var(--grad-primary);
+  position: relative;
+  box-shadow: 0 0 24px -4px rgba(0, 240, 255, 0.6);
+}
+.brand .logo::after {
+  content: ""; position: absolute; inset: 5px;
+  border-radius: 3px;
+  background: var(--bg-0);
+}
+.brand .logo::before {
+  content: ""; position: absolute; inset: 10px;
+  border-radius: 999px;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}
+.brand .sub {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  letter-spacing: 0.22em; color: var(--ink-400);
+  text-transform: uppercase; margin-left: -4px; padding-left: 10px;
+  border-left: 1px solid var(--line);
+  white-space: nowrap;
+}
+/* Only hide "Spatial Media" in the awkward band where the nav links are still visible
+   but the window is too narrow to fit subtitle + nav + CTA. Once the hamburger kicks in
+   (≤880px), there's room again, so the subtitle reappears. */
+@media (max-width: 1180px) and (min-width: 881px) {
+  .site-header .brand .sub { display: none; }
+}
+.brand-mark {
+  height: 22px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 0 24px rgba(0, 240, 255, 0.2));
+  transition: filter 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+}
+.brand:hover .brand-mark { filter: drop-shadow(0 0 28px rgba(0, 240, 255, 0.5)); }
+.footer-brand .brand-mark { height: 28px; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { color: var(--ink-300); font-size: 0.92rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink-100); }
+.nav-cta { display: flex; align-items: center; gap: 10px; }
+.nav-toggle { display: none; width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 10px; align-items: center; justify-content: center; }
+.nav-toggle span { display: block; width: 16px; height: 2px; background: var(--ink-100); position: relative; }
+.nav-toggle span::before, .nav-toggle span::after { content: ""; position: absolute; left: 0; width: 16px; height: 2px; background: var(--ink-100); transition: transform 0.25s; }
+.nav-toggle span::before { top: -5px; }
+.nav-toggle span::after { top: 5px; }
+
+/* =========================================================
+   Hero
+   ========================================================= */
+.hero {
+  padding-top: clamp(140px, 16vw, 200px);
+  padding-bottom: clamp(60px, 8vw, 120px);
+  position: relative;
+  overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center;
+}
+.brand-flow {
+  display: inline-flex; flex-wrap: wrap; align-items: center;
+  gap: 10px 14px;
+  margin: 18px 0 22px;
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-100);
+}
+.brand-flow span { color: var(--cyan); }
+.brand-flow span:nth-child(1) { color: var(--violet); }
+.brand-flow span:nth-child(3) { color: var(--cyan); }
+.brand-flow span:nth-child(5) { color: var(--cyan); }
+.brand-flow span:nth-child(7) { color: var(--magenta); }
+.brand-flow i {
+  font-style: normal;
+  color: var(--ink-400);
+  font-size: 1em;
+  font-weight: 500;
+}
+.hero-copy h1 { margin-bottom: 24px; }
+.hero-copy h1 .line { display: block; }
+.hero-copy h1 .accent { background: var(--grad-primary); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero-copy .lead { max-width: 540px; margin-bottom: 36px; }
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+.hero-meta { display: flex; gap: 28px; flex-wrap: wrap; font-size: 0.85rem; color: var(--ink-400); }
+.hero-meta .dot { color: var(--cyan); }
+
+/* Map visual */
+.hero-visual {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 580px;
+  width: 100%;
+  margin-left: auto;
+}
+.map-wrap {
+  position: relative;
+  width: 100%; height: 100%;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--line-strong);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(0, 240, 255, 0.18), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(124, 92, 255, 0.18), transparent 55%),
+    linear-gradient(180deg, #0a0d1a, #050610);
+  overflow: hidden;
+  box-shadow: 0 40px 100px -30px rgba(0, 240, 255, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+.map-wrap::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+}
+.map-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.map-hud {
+  position: absolute;
+  background: rgba(10, 13, 26, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-200);
+  display: flex; align-items: center; gap: 10px;
+}
+.map-hud .pulse-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); animation: pulseDot 1.6s ease-in-out infinite; }
+.map-hud-tl { top: 18px; left: 18px; }
+.map-hud-tr { top: 18px; right: 18px; }
+.map-hud-bl { bottom: 18px; left: 18px; }
+.map-hud-br { bottom: 18px; right: 18px; }
+
+@keyframes pulseDot { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.6; } }
+
+/* Partner strip */
+.partner-strip {
+  margin-top: clamp(60px, 8vw, 100px);
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.01);
+}
+.partner-strip-inner { display: flex; align-items: center; gap: clamp(24px, 4vw, 56px); flex-wrap: wrap; justify-content: space-between; }
+.partner-strip .label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-400); }
+.partner-list { display: flex; gap: clamp(20px, 3vw, 44px); flex-wrap: wrap; align-items: center; }
+.partner-list span {
+  font-family: var(--font-display); font-weight: 500; letter-spacing: 0.04em;
+  color: var(--ink-300); font-size: 1rem;
+  opacity: 0.7; transition: opacity 0.2s, color 0.2s;
+}
+.partner-list span:hover { opacity: 1; color: var(--ink-100); }
+
+/* Stats */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: clamp(48px, 6vw, 72px);
+}
+.stat {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.stat::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-primary);
+  opacity: 0.7;
+}
+.stat .num { font-family: var(--font-display); font-size: clamp(1.75rem, 2.4vw, 2.25rem); color: var(--ink-100); font-weight: 600; letter-spacing: -0.02em; }
+.stat .num .unit { color: var(--cyan); }
+.stat .label { font-size: 0.85rem; color: var(--ink-400); margin-top: 6px; }
+.stat .tag { display: inline-block; margin-top: 10px; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-300); padding: 4px 8px; border-radius: 999px; border: 1px solid var(--line); }
+
+/* =========================================================
+   What is DROPZ
+   ========================================================= */
+.what-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+.howit {
+  display: grid; gap: 14px;
+  margin-top: 28px;
+}
+.howit-row {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--glass);
+  align-items: center;
+  transition: border-color 0.3s, background 0.3s;
+}
+.howit-row:hover { border-color: var(--cyan-soft); background: var(--glass-2); }
+.howit-row .step {
+  width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  background: var(--grad-cool);
+  color: #04050a; font-weight: 700; font-family: var(--font-display);
+}
+.howit-row h4 { margin: 0 0 4px; }
+.howit-row p { margin: 0; font-size: 0.92rem; }
+
+.flow-diagram {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+  overflow: hidden;
+}
+.flow-diagram::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(400px 200px at 20% 0%, rgba(0, 240, 255, 0.12), transparent 60%),
+    radial-gradient(400px 200px at 80% 100%, rgba(124, 92, 255, 0.12), transparent 60%);
+  pointer-events: none;
+}
+.flow-list { position: relative; z-index: 1; display: grid; gap: 12px; }
+.flow-node {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(10, 13, 26, 0.5);
+  font-family: var(--font-mono); font-size: 0.85rem;
+  color: var(--ink-200);
+}
+.flow-node .marker { width: 10px; height: 10px; border-radius: 999px; background: var(--cyan); box-shadow: 0 0 12px var(--cyan); flex-shrink: 0; }
+.flow-node:nth-child(2) .marker { background: var(--violet); box-shadow: 0 0 12px var(--violet); }
+.flow-node:nth-child(3) .marker { background: var(--magenta); box-shadow: 0 0 12px var(--magenta); }
+.flow-node:nth-child(4) .marker { background: var(--cyan); box-shadow: 0 0 12px var(--cyan); }
+.flow-node:nth-child(5) .marker { background: var(--violet); box-shadow: 0 0 12px var(--violet); }
+.flow-node:nth-child(6) .marker { background: var(--lime); box-shadow: 0 0 12px var(--lime); }
+.flow-arrow { display: flex; justify-content: center; padding: 4px 0; color: var(--ink-500); }
+.diff-callout {
+  margin-top: 28px;
+  padding: 18px 22px;
+  border: 1px solid var(--cyan-soft);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.06), rgba(124, 92, 255, 0.04));
+  font-size: 0.95rem;
+  color: var(--ink-100);
+}
+.diff-callout strong { color: var(--cyan); }
+
+/* =========================================================
+   Platform / Features
+   ========================================================= */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.feature-grid .card { padding: 32px; }
+.feature-grid .card.span-2 { grid-column: span 2; }
+.feature-tag {
+  display: inline-block;
+  font-family: var(--font-mono); font-size: 0.7rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-400);
+  margin-bottom: 8px;
+}
+
+/* =========================================================
+   Use cases
+   ========================================================= */
+.usecase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.usecase {
+  position: relative;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+  transition: transform 0.3s var(--ease-out), border-color 0.3s;
+  overflow: hidden;
+}
+.usecase:hover { transform: translateY(-4px); border-color: var(--violet-soft); }
+.usecase .icon-lg {
+  width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 14px;
+  background: var(--grad-cool);
+  color: #04050a;
+  margin-bottom: 18px;
+}
+.usecase .monetize {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  font-family: var(--font-mono); font-size: 0.78rem;
+  color: var(--ink-300);
+}
+.usecase .monetize span { color: var(--cyan); }
+
+/* =========================================================
+   Business model
+   ========================================================= */
+.revenue-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.revenue-list { display: grid; gap: 12px; }
+.revenue-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 16px; align-items: center;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--glass);
+  transition: border-color 0.25s, transform 0.25s;
+}
+.revenue-row:hover { border-color: var(--cyan-soft); transform: translateX(4px); }
+.revenue-row .badge {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  font-weight: 600; letter-spacing: 0.12em;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgba(0, 240, 255, 0.08);
+  color: var(--cyan);
+  border: 1px solid var(--cyan-soft);
+}
+.revenue-row h4 { margin: 0 0 2px; }
+.revenue-row p { margin: 0; font-size: 0.88rem; color: var(--ink-400); }
+.revenue-row .price { font-family: var(--font-mono); font-size: 0.88rem; color: var(--ink-200); }
+
+.revenue-flow {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+  position: sticky;
+  top: 100px;
+}
+.revenue-flow h3 { margin-bottom: 18px; }
+.flow-pipeline { display: grid; gap: 10px; }
+.pipe-node {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(10, 13, 26, 0.5);
+  font-family: var(--font-mono); font-size: 0.82rem;
+  color: var(--ink-200);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.pipe-node .pill {
+  font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-400);
+  padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line);
+}
+.pipe-arrow { text-align: center; color: var(--ink-500); padding: 2px 0; }
+
+/* =========================================================
+   Thesis
+   ========================================================= */
+.thesis-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.thesis-card {
+  position: relative;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(124, 92, 255, 0.05), rgba(255, 255, 255, 0));
+  overflow: hidden;
+}
+.thesis-card .num {
+  font-family: var(--font-mono); font-size: 0.78rem;
+  color: var(--cyan); letter-spacing: 0.16em;
+  margin-bottom: 14px; display: block;
+}
+.thesis-card h3 { margin-bottom: 8px; }
+.thesis-card p { margin: 0; }
+.thesis-card.featured {
+  grid-column: span 2;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.08), rgba(124, 92, 255, 0.08), rgba(255, 62, 165, 0.06));
+  border-color: var(--cyan-soft);
+}
+.thesis-card.featured h3 { font-size: clamp(1.4rem, 2vw, 1.75rem); }
+.dreit-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 14px;
+  font-family: var(--font-mono); font-size: 0.78rem;
+  padding: 6px 12px; border-radius: 999px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--line-strong);
+  color: var(--ink-100);
+}
+
+/* =========================================================
+   Case studies
+   ========================================================= */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.case {
+  position: relative;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0));
+  display: flex; flex-direction: column; gap: 16px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.case:hover { border-color: var(--magenta-soft); transform: translateY(-3px); }
+.case .case-tag {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--magenta);
+}
+.case .metric {
+  font-family: var(--font-display);
+  font-size: 2.25rem; font-weight: 600;
+  color: var(--ink-100); letter-spacing: -0.02em;
+  background: var(--grad-warm);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.case .metric-label { font-size: 0.85rem; color: var(--ink-400); margin-top: -4px; }
+.case h3 { margin: 0; }
+.case p { margin: 0; font-size: 0.95rem; }
+.case .ex { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-500); margin-top: auto; padding-top: 12px; border-top: 1px dashed var(--line); }
+
+/* =========================================================
+   Ecosystem
+   ========================================================= */
+.eco-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.eco-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--glass);
+  padding: 28px;
+  transition: border-color 0.3s;
+}
+.eco-card:hover { border-color: var(--cyan-soft); }
+.eco-card h4 { margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.eco-card h4::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+.eco-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.eco-pill {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  font-family: var(--font-mono); font-size: 0.78rem;
+  color: var(--ink-200);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.eco-pill:hover { border-color: var(--cyan-soft); color: var(--cyan); background: rgba(0, 240, 255, 0.05); }
+.eco-note {
+  margin-top: 28px; text-align: center;
+  font-size: 0.95rem; color: var(--ink-300);
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(0, 240, 255, 0.03);
+}
+.eco-note strong { color: var(--cyan); }
+
+/* =========================================================
+   GTM / roadmap
+   ========================================================= */
+.gtm-strategies {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 56px;
+}
+.gtm-strategies .card { padding: 24px; }
+.roadmap {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 32px;
+}
+.roadmap::before {
+  content: "";
+  position: absolute;
+  top: 28px; left: 5%; right: 5%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--violet), var(--magenta));
+  opacity: 0.4;
+}
+.phase {
+  position: relative;
+  padding: 0 14px;
+  text-align: center;
+}
+.phase .dot {
+  width: 18px; height: 18px;
+  border-radius: 999px;
+  background: var(--bg-0);
+  border: 2px solid var(--cyan);
+  margin: 18px auto 0;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.5);
+  position: relative;
+  z-index: 1;
+}
+.phase:nth-child(2) .dot { border-color: var(--violet); box-shadow: 0 0 18px rgba(124, 92, 255, 0.5); }
+.phase:nth-child(3) .dot { border-color: var(--magenta); box-shadow: 0 0 18px rgba(255, 62, 165, 0.5); }
+.phase:nth-child(4) .dot { border-color: var(--lime); box-shadow: 0 0 18px rgba(182, 255, 60, 0.4); }
+.phase .label {
+  margin-top: 18px;
+  font-family: var(--font-mono); font-size: 0.7rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-400);
+}
+.phase h4 { margin: 8px 0 6px; font-size: 1.1rem; }
+.phase p { margin: 0; font-size: 0.88rem; }
+
+/* =========================================================
+   Vision
+   ========================================================= */
+.vision {
+  background:
+    radial-gradient(800px 400px at 50% -20%, rgba(0, 240, 255, 0.18), transparent 60%),
+    radial-gradient(700px 400px at 50% 120%, rgba(124, 92, 255, 0.15), transparent 60%),
+    var(--bg-1);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.vision .big-statement {
+  font-family: var(--font-brand);
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  background: var(--grad-text);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  max-width: 1100px;
+  margin: 0 auto 48px;
+}
+.vision-points {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.vision-point {
+  padding: 22px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(5, 6, 15, 0.4);
+  backdrop-filter: blur(8px);
+  text-align: left;
+}
+.vision-point .num {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--cyan); letter-spacing: 0.18em; display: block;
+  margin-bottom: 12px;
+}
+.vision-point h4 { font-size: 0.95rem; margin-bottom: 6px; }
+.vision-point p { font-size: 0.84rem; margin: 0; color: var(--ink-400); }
+
+/* =========================================================
+   CTA + Form
+   ========================================================= */
+.final-cta { padding-top: 80px; }
+.cta-options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 48px;
+}
+.cta-option {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--glass);
+  text-align: center;
+  font-weight: 600; font-family: var(--font-display);
+  color: var(--ink-100);
+  transition: transform 0.25s, border-color 0.25s, background 0.25s;
+  cursor: pointer;
+}
+.cta-option:hover { transform: translateY(-2px); border-color: var(--cyan-soft); background: var(--glass-2); }
+.cta-option .small { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em; color: var(--cyan); margin-bottom: 6px; font-weight: 500; }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.contact-info h2 { margin-bottom: 14px; }
+.contact-info ul { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 14px; }
+.contact-info li { display: flex; gap: 12px; align-items: flex-start; font-size: 0.95rem; color: var(--ink-300); }
+.contact-info li::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--cyan); margin-top: 9px; flex-shrink: 0; box-shadow: 0 0 8px var(--cyan); }
+
+.form {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+  padding: 32px;
+  display: grid;
+  gap: 16px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: grid; gap: 6px; }
+.field label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-400); }
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(5, 6, 15, 0.6);
+  color: var(--ink-100);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--cyan);
+  background: rgba(5, 6, 15, 0.8);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.12);
+}
+.field textarea { min-height: 120px; resize: vertical; }
+.form .submit-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+.form .form-note { font-size: 0.8rem; color: var(--ink-500); }
+.form-success {
+  display: none;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid var(--cyan-soft);
+  color: var(--cyan);
+  font-size: 0.9rem;
+}
+.form-success.show { display: block; }
+
+/* =========================================================
+   Footer
+   ========================================================= */
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: rgba(5, 6, 15, 0.6);
+  padding: 64px 0 28px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.footer-brand p { max-width: 320px; font-size: 0.92rem; color: var(--ink-400); margin-top: 16px; }
+.footer-col h5 { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-300); margin: 0 0 16px; font-weight: 500; }
+.footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.footer-col a { color: var(--ink-300); font-size: 0.92rem; transition: color 0.2s; }
+.footer-col a:hover { color: var(--cyan); }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  padding-top: 24px; border-top: 1px solid var(--line);
+  font-size: 0.85rem; color: var(--ink-500);
+}
+.socials { display: flex; gap: 10px; }
+.socials a {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  color: var(--ink-300);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.socials a:hover { border-color: var(--cyan-soft); color: var(--cyan); background: rgba(0, 240, 255, 0.04); }
+
+/* =========================================================
+   Reveal animation
+   ========================================================= */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-visual { margin: 32px auto 0; max-width: 480px; }
+  .what-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .feature-grid .card.span-2 { grid-column: span 2; }
+  .usecase-grid { grid-template-columns: repeat(2, 1fr); }
+  .revenue-grid { grid-template-columns: 1fr; }
+  .revenue-flow { position: static; }
+  .cases-grid { grid-template-columns: repeat(2, 1fr); }
+  .gtm-strategies { grid-template-columns: 1fr; }
+  .roadmap { grid-template-columns: repeat(2, 1fr); gap: 32px 0; }
+  .roadmap::before { display: none; }
+  .vision-points { grid-template-columns: repeat(2, 1fr); }
+  .cta-options { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 880px) {
+  .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(8, 8, 10, 0.96); backdrop-filter: blur(16px); flex-direction: column; padding: 18px 24px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); align-items: flex-start; gap: 14px; }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: inline-flex; }
+  .nav-cta .btn-secondary { display: none; }
+}
+@media (max-width: 720px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .feature-grid { grid-template-columns: 1fr; }
+  .feature-grid .card.span-2 { grid-column: span 1; }
+  .usecase-grid { grid-template-columns: 1fr; }
+  .thesis-grid { grid-template-columns: 1fr; }
+  .thesis-card.featured { grid-column: span 1; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .eco-grid { grid-template-columns: 1fr; }
+  .vision-points { grid-template-columns: 1fr; }
+  .cta-options { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .map-hud-tr, .map-hud-bl { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ====================== HEADER ====================== -->
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <nav class="nav" aria-label="Primary">
+      <a href="#top" class="brand" aria-label="DROPZ Spatial Media home">
+        <img src="dropz-wordmark-white.png" alt="DROPZ" class="brand-mark" />
+        <span class="sub">Spatial Media</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#what">Platform</a>
+        <a href="#product">Product</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#thesis">Thesis</a>
+        <a href="#partners">Partners</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#contact" class="btn btn-secondary">Partner with us</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ====================== HERO ====================== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">DROPZ &middot; Spatial Media</span>
+        <div class="brand-flow"><span>Movement</span><i>→</i><span>Engagement</span><i>→</i><span>Intelligence</span><i>→</i><span>Performance</span></div>
+        <h1>
+          <span class="line">Monetizing Presence.</span>
+          <span class="line accent">Owning the Digital Layer of the Real World.</span>
+        </h1>
+        <p class="lead">DROPZ is the spatial engagement and monetization infrastructure for the next era of global gathering. Every major event, stadium, campus, and city center is an untapped interaction &mdash; now unlocked.</p>
+        <div class="hero-ctas">
+          <a href="#contact" class="btn btn-primary">Partner With Us <span class="arrow">→</span></a>
+          <a href="#product" class="btn btn-secondary">See the Platform</a>
+        </div>
+        <div class="hero-meta">
+          <span><span class="dot">●</span> Live network &mdash; Beta</span>
+          <span><span class="dot">●</span> SOC&nbsp;2 roadmap</span>
+          <span><span class="dot">●</span> SDK-ready</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal reveal-delay-2" aria-hidden="true">
+        <div class="map-wrap">
+          <svg class="map-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <radialGradient id="pulse" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.7" />
+                <stop offset="60%" stop-color="#00f0ff" stop-opacity="0.1" />
+                <stop offset="100%" stop-color="#00f0ff" stop-opacity="0" />
+              </radialGradient>
+              <radialGradient id="pulseV" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#7c5cff" stop-opacity="0.7" />
+                <stop offset="60%" stop-color="#7c5cff" stop-opacity="0.1" />
+                <stop offset="100%" stop-color="#7c5cff" stop-opacity="0" />
+              </radialGradient>
+              <radialGradient id="pulseM" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ff3ea5" stop-opacity="0.7" />
+                <stop offset="60%" stop-color="#ff3ea5" stop-opacity="0.1" />
+                <stop offset="100%" stop-color="#ff3ea5" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="pathGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="#7c5cff" stop-opacity="0.2" />
+              </linearGradient>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2.5" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Grid roads -->
+            <g stroke="rgba(255,255,255,0.06)" stroke-width="1">
+              <path d="M0,150 Q150,180 300,160 T600,180" fill="none" />
+              <path d="M0,300 Q200,260 400,310 T600,290" fill="none" />
+              <path d="M0,440 Q180,470 320,430 T600,460" fill="none" />
+              <path d="M120,0 Q140,200 110,400 T160,600" fill="none" />
+              <path d="M320,0 Q300,180 340,360 T310,600" fill="none" />
+              <path d="M480,0 Q460,200 490,400 T470,600" fill="none" />
+            </g>
+
+            <!-- Heat zones -->
+            <circle cx="180" cy="200" r="120" fill="url(#pulse)" />
+            <circle cx="430" cy="380" r="140" fill="url(#pulseV)" />
+            <circle cx="320" cy="500" r="100" fill="url(#pulseM)" />
+
+            <!-- Connection paths -->
+            <path d="M180,200 Q280,290 430,380" stroke="url(#pathGrad)" stroke-width="1.5" fill="none" stroke-dasharray="4 6" filter="url(#glow)">
+              <animate attributeName="stroke-dashoffset" from="0" to="-60" dur="3s" repeatCount="indefinite" />
+            </path>
+            <path d="M430,380 Q380,440 320,500" stroke="url(#pathGrad)" stroke-width="1.5" fill="none" stroke-dasharray="4 6" filter="url(#glow)">
+              <animate attributeName="stroke-dashoffset" from="0" to="-60" dur="2.4s" repeatCount="indefinite" />
+            </path>
+            <path d="M180,200 Q120,360 320,500" stroke="url(#pathGrad)" stroke-width="1.5" fill="none" stroke-dasharray="4 6" opacity="0.6">
+              <animate attributeName="stroke-dashoffset" from="0" to="-60" dur="3.6s" repeatCount="indefinite" />
+            </path>
+
+            <!-- Drop pins -->
+            <g filter="url(#glow)">
+              <!-- Pin 1: cyan -->
+              <g transform="translate(180,200)">
+                <circle r="22" fill="none" stroke="#00f0ff" stroke-width="1" opacity="0.4">
+                  <animate attributeName="r" from="10" to="40" dur="2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" from="0.6" to="0" dur="2s" repeatCount="indefinite" />
+                </circle>
+                <circle r="10" fill="#00f0ff" />
+                <circle r="4" fill="#fff" />
+              </g>
+              <!-- Pin 2: violet -->
+              <g transform="translate(430,380)">
+                <circle r="22" fill="none" stroke="#7c5cff" stroke-width="1" opacity="0.4">
+                  <animate attributeName="r" from="10" to="40" dur="2.4s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" from="0.6" to="0" dur="2.4s" repeatCount="indefinite" />
+                </circle>
+                <circle r="10" fill="#7c5cff" />
+                <circle r="4" fill="#fff" />
+              </g>
+              <!-- Pin 3: magenta -->
+              <g transform="translate(320,500)">
+                <circle r="20" fill="none" stroke="#ff3ea5" stroke-width="1" opacity="0.4">
+                  <animate attributeName="r" from="8" to="36" dur="2.8s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" from="0.6" to="0" dur="2.8s" repeatCount="indefinite" />
+                </circle>
+                <circle r="8" fill="#ff3ea5" />
+                <circle r="3" fill="#fff" />
+              </g>
+              <!-- Smaller drops -->
+              <g transform="translate(90,360)" opacity="0.85">
+                <circle r="6" fill="#00f0ff" />
+              </g>
+              <g transform="translate(530,180)" opacity="0.85">
+                <circle r="6" fill="#7c5cff" />
+              </g>
+              <g transform="translate(500,520)" opacity="0.85">
+                <circle r="5" fill="#b6ff3c" />
+              </g>
+              <g transform="translate(90,520)" opacity="0.85">
+                <circle r="5" fill="#00f0ff" />
+              </g>
+            </g>
+
+            <!-- Token icons (hex) floating -->
+            <g opacity="0.85" filter="url(#glow)">
+              <g transform="translate(260,110)">
+                <polygon points="0,-12 10,-6 10,6 0,12 -10,6 -10,-6" fill="rgba(0,240,255,0.15)" stroke="#00f0ff" stroke-width="1" />
+                <text x="0" y="3" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#00f0ff">D</text>
+              </g>
+              <g transform="translate(370,260)">
+                <polygon points="0,-10 9,-5 9,5 0,10 -9,5 -9,-5" fill="rgba(124,92,255,0.15)" stroke="#7c5cff" stroke-width="1" />
+                <text x="0" y="3" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#7c5cff">D</text>
+              </g>
+            </g>
+          </svg>
+
+          <div class="map-hud map-hud-tl"><span class="pulse-dot"></span> 24 active drops</div>
+          <div class="map-hud map-hud-tr">CAMPUS · NORTH</div>
+          <div class="map-hud map-hud-bl">42° 21′ N · 71° 03′ W</div>
+          <div class="map-hud map-hud-br"><span class="pulse-dot"></span> Engagement +18%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat reveal">
+        <div class="num" data-count="35"><span class="counter">0</span><span class="unit">%</span></div>
+        <div class="label">Campus adoption potential</div>
+        <span class="tag">Modeled · Example</span>
+      </div>
+      <div class="stat reveal reveal-delay-1">
+        <div class="num" data-count="100"><span class="counter">0</span><span class="unit">K+</span></div>
+        <div class="label">Monthly engagement target</div>
+        <span class="tag">Per Activation</span>
+      </div>
+      <div class="stat reveal reveal-delay-2">
+        <div class="num" data-count="5"><span class="counter">0</span><span class="unit">+</span></div>
+        <div class="label">Monetization streams</div>
+        <span class="tag">Recurring</span>
+      </div>
+      <div class="stat reveal reveal-delay-3">
+        <div class="num">Campus<span class="unit"> → </span>Cities</div>
+        <div class="label">Expansion model</div>
+        <span class="tag">4-Phase Roadmap</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partner strip -->
+  <div class="container">
+    <div class="partner-strip reveal">
+      <div class="partner-strip-inner">
+        <span class="label">Powered by &amp; integrated with</span>
+        <div class="partner-list">
+          <span>UNITY</span>
+          <span>NIANTIC</span>
+          <span>IMPACT</span>
+          <span>CJ</span>
+          <span>RAKUTEN</span>
+          <span>TELECOM APPS</span>
+          <span>CAMPUS NETWORKS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== WHAT IS DROPZ ====================== -->
+<section id="what">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">01 — What is DROPZ</span>
+      <h2 class="text-grad">Pokemon Go for Brands. <br/>Built as infrastructure.</h2>
+      <p class="lead">DROPZ is a programmable engagement layer where users discover digital drops in real-world locations &mdash; and brands monetize attention, movement, and interaction.</p>
+    </div>
+
+    <div class="what-grid">
+      <div class="reveal">
+        <h3>How it works</h3>
+        <p>Four steps from open-app to revenue.</p>
+        <div class="howit">
+          <div class="howit-row">
+            <div class="step">1</div>
+            <div><h4>Users open a map</h4><p>Inside a partner app, web app, or DROPZ-native experience.</p></div>
+          </div>
+          <div class="howit-row">
+            <div class="step">2</div>
+            <div><h4>Digital drops appear</h4><p>Tokens, quests, brand markers and zones tied to real-world coordinates.</p></div>
+          </div>
+          <div class="howit-row">
+            <div class="step">3</div>
+            <div><h4>Users engage with brand experiences</h4><p>Redeem rewards, claim collectibles, complete activations.</p></div>
+          </div>
+          <div class="howit-row">
+            <div class="step">4</div>
+            <div><h4>Brands track, optimize, monetize</h4><p>Engagement data feeds CRM, attribution, and recurring billing.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="flow-diagram">
+          <h4 style="font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-400);margin-bottom:18px;">Engagement → Revenue Flow</h4>
+          <div class="flow-list">
+            <div class="flow-node"><span class="marker"></span>User</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node"><span class="marker"></span>Map</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node"><span class="marker"></span>Digital Drop</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node"><span class="marker"></span>Brand Engagement</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node"><span class="marker"></span>Analytics</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node"><span class="marker"></span>Revenue</div>
+          </div>
+        </div>
+        <div class="diff-callout">
+          <strong>Key differentiation —</strong> DROPZ is not another ad network. It is infrastructure for monetizing the digital layer of physical space.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PRODUCT / PLATFORM ====================== -->
+<section id="product" style="background: linear-gradient(180deg, transparent, rgba(124, 92, 255, 0.03), transparent);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">02 — Platform</span>
+      <h2>Five layers that make space programmable.</h2>
+      <p class="lead">A modular architecture brands and partners can adopt incrementally &mdash; from map embed, to full SDK, to data and personalization.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="card reveal">
+        <span class="feature-tag">Layer 01</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3z"/><path d="M9 4v13M15 7v13"/></svg>
+        </div>
+        <h3>Map Layer</h3>
+        <p>Google Maps + Unity rendering, AR-style interaction, and live location intelligence. Drops, zones, and paths anchored to real-world geometry.</p>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <span class="feature-tag">Layer 02</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>SDK Integration</h3>
+        <p>Partners embed DROPZ inside existing apps in days, not quarters. iOS, Android, Web. No need to ship another app to the consumer.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <span class="feature-tag">Layer 03</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+        </div>
+        <h3>CRM &amp; Data Engine</h3>
+        <p>Tracks user behavior, brand engagement, and location performance. First-party identity, attribution, and a real-time event pipeline.</p>
+      </div>
+      <div class="card reveal">
+        <span class="feature-tag">Layer 04</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
+        </div>
+        <h3>Personalization Engine</h3>
+        <p>AI-driven maps that adapt to user behavior, interests, and context. Every map is unique &mdash; ranked, scored, and optimized continuously.</p>
+      </div>
+      <div class="card span-2 reveal reveal-delay-1">
+        <span class="feature-tag">Layer 05</span>
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+        </div>
+        <h3>Avatar &amp; UX Layer</h3>
+        <p>Branded avatars, rewards, quests, drops, and collectibles unify the consumer experience. Guided, gamified, and instrumented &mdash; so every interaction is measurable and brand-safe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== USE CASES ====================== -->
+<section id="solutions">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">03 — Solutions</span>
+      <h2>Where DROPZ goes live.</h2>
+      <p class="lead">From the first dorm to the last city block. The same infrastructure scales across every dense, monetizable footprint.</p>
+    </div>
+
+    <div class="usecase-grid">
+      <div class="usecase reveal">
+        <div class="icon-lg">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg>
+        </div>
+        <h3>Colleges</h3>
+        <p>Campus engagement, student rewards, ambassador campaigns, and local brand activations across dining, retail, and Greek life.</p>
+        <div class="monetize">Monetization: <span>Brand Drops · Local Commerce · Ambassador Bounties</span></div>
+      </div>
+
+      <div class="usecase reveal reveal-delay-1">
+        <div class="icon-lg">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+        <h3>Concerts &amp; Festivals</h3>
+        <p>Event scavenger hunts, sponsor activations, location-based rewards, and exclusive drops gated to the venue footprint.</p>
+        <div class="monetize">Monetization: <span>Sponsor Placements · Activation Fees · Premium Quests</span></div>
+      </div>
+
+      <div class="usecase reveal reveal-delay-2">
+        <div class="icon-lg">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 7 7 .5-5.5 4.5L18 22l-6-4-6 4 1.5-8L2 9.5 9 9z"/></svg>
+        </div>
+        <h3>Sports Stadiums</h3>
+        <p>Fan engagement, concession upsell, sponsor activations, and seat-to-zone experiences that monetize every minute in the venue.</p>
+        <div class="monetize">Monetization: <span>Concession CPA · Sponsor Drops · Premium Seat Layers</span></div>
+      </div>
+
+      <div class="usecase reveal">
+        <div class="icon-lg">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-7h6v7"/></svg>
+        </div>
+        <h3>Cities</h3>
+        <p>Urban digital real estate, tourism trails, local commerce, and smart city engagement &mdash; programmable per district, per block.</p>
+        <div class="monetize">Monetization: <span>District Licensing · Tourism Quests · Local SMB CPC</span></div>
+      </div>
+
+      <div class="usecase reveal reveal-delay-1">
+        <div class="icon-lg">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M5 6h14M5 18h14"/><circle cx="5" cy="6" r="1.5"/><circle cx="5" cy="12" r="1.5"/><circle cx="5" cy="18" r="1.5"/></svg>
+        </div>
+        <h3>Telecom Apps</h3>
+        <p>SDK distribution at carrier scale &mdash; subscriber engagement, location-based monetization, and a new revenue line on existing rails.</p>
+        <div class="monetize">Monetization: <span>SDK Revenue Share · Subscriber CPA · Data Licensing</span></div>
+      </div>
+
+      <div class="usecase reveal reveal-delay-2">
+        <div class="icon-lg">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        </div>
+        <h3>+ Network Apps</h3>
+        <p>Maps, transit, retail, dating, fan apps. Any app with a map screen becomes a DROPZ-enabled storefront for the physical world.</p>
+        <div class="monetize">Monetization: <span>Embedded Drops · Rev-share · Data Co-op</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== BUSINESS MODEL ====================== -->
+<section id="business" style="background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.025), transparent);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">04 — Business Model</span>
+      <h2>Recurring revenue. Software margins. Real-world inventory.</h2>
+      <p class="lead">Five revenue streams compound on the same network. The more locations and partners connect, the more inventory becomes monetizable.</p>
+    </div>
+
+    <div class="revenue-grid">
+      <div class="revenue-list">
+        <div class="revenue-row reveal">
+          <span class="badge">01</span>
+          <div>
+            <h4>Placement Fees</h4>
+            <p>Per-brand, per-location subscription for owned digital real estate.</p>
+          </div>
+          <span class="price">$1,000 / mo &middot; ex.</span>
+        </div>
+        <div class="revenue-row reveal reveal-delay-1">
+          <span class="badge">02</span>
+          <div>
+            <h4>CPC — Cost per Click</h4>
+            <p>Performance billing on map taps, drop opens, and route clicks.</p>
+          </div>
+          <span class="price">$0.40 – $1.20</span>
+        </div>
+        <div class="revenue-row reveal reveal-delay-2">
+          <span class="badge">03</span>
+          <div>
+            <h4>CPA — Cost per Acquisition</h4>
+            <p>Attributable redemptions, sign-ups, and in-store conversions.</p>
+          </div>
+          <span class="price">$3 – $25</span>
+        </div>
+        <div class="revenue-row reveal">
+          <span class="badge">04</span>
+          <div>
+            <h4>SaaS / SDK Fees</h4>
+            <p>Platform licensing for partners embedding DROPZ.</p>
+          </div>
+          <span class="price">Tiered</span>
+        </div>
+        <div class="revenue-row reveal reveal-delay-1">
+          <span class="badge">05</span>
+          <div>
+            <h4>Data &amp; Analytics Layer</h4>
+            <p>Insights, reporting, optimization, and performance intelligence.</p>
+          </div>
+          <span class="price">Premium</span>
+        </div>
+      </div>
+
+      <div class="revenue-flow reveal reveal-delay-2">
+        <h3>Revenue flow</h3>
+        <p class="muted" style="font-size:0.9rem;">How value moves through the network.</p>
+        <div class="flow-pipeline">
+          <div class="pipe-node">Brands <span class="pill">Demand</span></div>
+          <div class="pipe-arrow">↓</div>
+          <div class="pipe-node">DROPZ Platform <span class="pill">Infra</span></div>
+          <div class="pipe-arrow">↓</div>
+          <div class="pipe-node">Locations / Users <span class="pill">Inventory</span></div>
+          <div class="pipe-arrow">↓</div>
+          <div class="pipe-node">Engagement Data <span class="pill">Signal</span></div>
+          <div class="pipe-arrow">↓</div>
+          <div class="pipe-node">Revenue Streams <span class="pill" style="color:var(--cyan);border-color:var(--cyan-soft);">5x</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== THESIS ====================== -->
+<section id="thesis">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">05 — Digital Real Estate Thesis</span>
+      <h2 class="text-grad">A new asset class hiding in plain sight.</h2>
+      <p class="lead">Physical inventory is finite. Digital inventory layered over physical space is expandable, programmable, and ownable.</p>
+    </div>
+
+    <div class="thesis-grid">
+      <div class="thesis-card reveal">
+        <span class="num">// 01 — INVENTORY</span>
+        <h3>Physical ad space is capped. Digital isn't.</h3>
+        <p>You cannot add billboards to a stadium concourse. You can add infinite addressable digital drops to the same square foot &mdash; and re-program them daily.</p>
+      </div>
+      <div class="thesis-card reveal reveal-delay-1">
+        <span class="num">// 02 — OWNERSHIP</span>
+        <h3>Ownership of a digital layer.</h3>
+        <p>DROPZ creates exclusive, durable ownership of the digital layer over real-world environments &mdash; campuses, venues, blocks &mdash; enforced through the platform.</p>
+      </div>
+      <div class="thesis-card reveal reveal-delay-2">
+        <span class="num">// 03 — RECURRING</span>
+        <h3>Locations generate recurring income.</h3>
+        <p>Every active location becomes a recurring revenue node. Stack thousands of nodes and you have a portfolio of cash-flowing digital plots.</p>
+      </div>
+      <div class="thesis-card reveal">
+        <span class="num">// 04 — MARGIN</span>
+        <h3>Real estate economics. Software margins.</h3>
+        <p>Comparable to commercial real estate, but with programmable inventory, software margins, and a near-zero marginal cost to add a new location.</p>
+      </div>
+      <div class="thesis-card featured reveal reveal-delay-1">
+        <span class="num">// 05 — STRUCTURE</span>
+        <h3>Foundation for a future DREIT.</h3>
+        <p>As the network of locations and recurring contracts compounds, DROPZ provides the foundation for a Digital Real Estate Investment Trust &mdash; the first portfolio of programmable physical-world digital plots.</p>
+        <div class="dreit-badge"><span style="color:var(--cyan)">●</span> DREIT &mdash; Digital Real Estate Investment Trust</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CASE STUDIES ====================== -->
+<section id="cases" style="background: linear-gradient(180deg, transparent, rgba(255, 62, 165, 0.03), transparent);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">06 — Proof</span>
+      <h2>Activation patterns that already work.</h2>
+      <p class="lead">Example metrics drawn from comparable activations and our internal modeling. Real numbers, conservative assumptions.</p>
+    </div>
+
+    <div class="cases-grid">
+      <div class="case reveal">
+        <span class="case-tag">Campus Activation</span>
+        <div class="metric">35%</div>
+        <div class="metric-label">Student adoption (modeled)</div>
+        <h3>The 8-week campus rollout.</h3>
+        <p>A university rollout drives 35% student adoption through rewards, ambassador campaigns, and location-based brand drops across dining, athletics, and Greek life.</p>
+        <div class="ex">EX. — Internal model · 12,000-student footprint</div>
+      </div>
+      <div class="case reveal reveal-delay-1">
+        <span class="case-tag">Festival</span>
+        <div class="metric">2.4×</div>
+        <div class="metric-label">Sponsor booth traffic lift</div>
+        <h3>Event scavenger hunt.</h3>
+        <p>Festival attendees unlock sponsor rewards by visiting digital zones &mdash; increasing booth traffic, dwell time, and measurable brand engagement across the weekend.</p>
+        <div class="ex">EX. — Internal model · 80K attendee event</div>
+      </div>
+      <div class="case reveal reveal-delay-2">
+        <span class="case-tag">Brand Engagement</span>
+        <div class="metric">100K+</div>
+        <div class="metric-label">Monthly clicks &amp; redemptions</div>
+        <h3>Foot traffic → measurable ROI.</h3>
+        <p>Push notifications and map-based drops convert passive foot traffic into measurable clicks, redemptions, and acquisitions &mdash; closing the loop on physical-world advertising.</p>
+        <div class="ex">EX. — Per-activation target · single market</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ECOSYSTEM ====================== -->
+<section id="partners">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">07 — Partners &amp; Ecosystem</span>
+      <h2>The network compounds.</h2>
+      <p class="lead">Every partner that connects to DROPZ &mdash; tech, brand, distribution, location &mdash; makes the next partner more valuable.</p>
+    </div>
+
+    <div class="eco-grid">
+      <div class="eco-card reveal">
+        <h4>Tech Partners</h4>
+        <p class="muted" style="font-size:0.9rem;margin-bottom:14px;">The rails: maps, AR engines, and platforms.</p>
+        <div class="eco-list">
+          <span class="eco-pill">Unity</span>
+          <span class="eco-pill">Niantic</span>
+          <span class="eco-pill">Google Maps</span>
+          <span class="eco-pill">AR Platforms</span>
+          <span class="eco-pill">Cloud Infra</span>
+        </div>
+      </div>
+      <div class="eco-card reveal reveal-delay-1">
+        <h4>Brand Networks</h4>
+        <p class="muted" style="font-size:0.9rem;margin-bottom:14px;">Demand: affiliate networks and brand pipelines.</p>
+        <div class="eco-list">
+          <span class="eco-pill">Impact</span>
+          <span class="eco-pill">CJ</span>
+          <span class="eco-pill">Rakuten</span>
+          <span class="eco-pill">DTC Brand Networks</span>
+        </div>
+      </div>
+      <div class="eco-card reveal reveal-delay-2">
+        <h4>Distribution Partners</h4>
+        <p class="muted" style="font-size:0.9rem;margin-bottom:14px;">Reach: SDK distribution at scale.</p>
+        <div class="eco-list">
+          <span class="eco-pill">Telecom Apps</span>
+          <span class="eco-pill">Media Apps</span>
+          <span class="eco-pill">Campus Apps</span>
+          <span class="eco-pill">Event Apps</span>
+        </div>
+      </div>
+      <div class="eco-card reveal reveal-delay-3">
+        <h4>Location Partners</h4>
+        <p class="muted" style="font-size:0.9rem;margin-bottom:14px;">Inventory: the physical footprints we light up.</p>
+        <div class="eco-list">
+          <span class="eco-pill">Colleges</span>
+          <span class="eco-pill">Stadiums</span>
+          <span class="eco-pill">Festivals</span>
+          <span class="eco-pill">Cities &amp; Districts</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="eco-note reveal">DROPZ becomes more valuable as more partners connect to the network. <strong>Network effect by design.</strong></div>
+  </div>
+</section>
+
+<!-- ====================== GO-TO-MARKET ====================== -->
+<section id="gtm" style="background: linear-gradient(180deg, transparent, rgba(124, 92, 255, 0.05), transparent);">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">08 — Go-to-Market</span>
+      <h2>Density first. Then everywhere.</h2>
+      <p class="lead">We start in the densest, most-instrumented physical environments on earth &mdash; college campuses &mdash; and earn our way into the rest.</p>
+    </div>
+
+    <div class="gtm-strategies">
+      <div class="card reveal">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l9-9 9 9-9 9z"/></svg>
+        </div>
+        <h3>Campus strategy</h3>
+        <p>Launch in high-density student environments where adoption, virality, and measurement compound fastest.</p>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M2 22a10 10 0 0 1 20 0"/></svg>
+        </div>
+        <h3>Ambassador programs</h3>
+        <p>Local student operators run activation playbooks, recruit partners, and unlock first 1,000 users in week one.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h3>Influencer + social acquisition</h3>
+        <p>Viral drops, quests, and rewards engineered to be screenshotted, shared, and stitched. Each drop is a content unit.</p>
+      </div>
+    </div>
+
+    <h3 class="reveal" style="text-align:center;margin-top:32px;font-size:clamp(1.25rem, 2vw, 1.5rem);">Expansion roadmap</h3>
+    <div class="roadmap">
+      <div class="phase reveal">
+        <div class="dot"></div>
+        <div class="label">Phase 1 — Now</div>
+        <h4>Campuses</h4>
+        <p>Beachhead. Density, virality, repeatable playbook.</p>
+      </div>
+      <div class="phase reveal reveal-delay-1">
+        <div class="dot"></div>
+        <div class="label">Phase 2</div>
+        <h4>Events &amp; Festivals</h4>
+        <p>High-intensity, sponsor-rich activations.</p>
+      </div>
+      <div class="phase reveal reveal-delay-2">
+        <div class="dot"></div>
+        <div class="label">Phase 3</div>
+        <h4>Stadiums &amp; Cities</h4>
+        <p>Anchored, recurring inventory at scale.</p>
+      </div>
+      <div class="phase reveal reveal-delay-3">
+        <div class="dot"></div>
+        <div class="label">Phase 4</div>
+        <h4>Telecom &amp; Everyday Apps</h4>
+        <p>Embedded everywhere users already are.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== VISION ====================== -->
+<section class="vision" id="vision">
+  <div class="container">
+    <div class="section-head reveal" style="margin-bottom: 56px;">
+      <span class="eyebrow">09 — Vision</span>
+    </div>
+    <h2 class="big-statement reveal">"DROPZ will own the digital world inside physical environments."</h2>
+    <div class="vision-points">
+      <div class="vision-point reveal">
+        <span class="num">01</span>
+        <h4>AI-driven maps</h4>
+        <p>Personalized to every user, brand, and context.</p>
+      </div>
+      <div class="vision-point reveal reveal-delay-1">
+        <span class="num">02</span>
+        <h4>Global rollout</h4>
+        <p>Campus to city to continent on a single substrate.</p>
+      </div>
+      <div class="vision-point reveal reveal-delay-2">
+        <span class="num">03</span>
+        <h4>Everyday integration</h4>
+        <p>Embedded in the apps users already open every day.</p>
+      </div>
+      <div class="vision-point reveal reveal-delay-3">
+        <span class="num">04</span>
+        <h4>Real-world economies</h4>
+        <p>Digital economies tied to physical presence.</p>
+      </div>
+      <div class="vision-point reveal reveal-delay-4">
+        <span class="num">05</span>
+        <h4>Programmable everywhere</h4>
+        <p>Every block, stadium, and venue is a monetizable layer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FINAL CTA + CONTACT ====================== -->
+<section class="final-cta" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">10 — Get in</span>
+      <h2 class="text-grad">Choose your way in.</h2>
+      <p class="lead">Brands, campuses, events, telecom, investors. The platform fits all of them &mdash; pick the path closest to you.</p>
+    </div>
+
+    <div class="cta-options">
+      <button class="cta-option reveal" data-interest="Brand"><span class="small">→ For Brands</span>Partner with DROPZ</button>
+      <button class="cta-option reveal reveal-delay-1" data-interest="Other"><span class="small">→ For Builders</span>Integrate the SDK</button>
+      <button class="cta-option reveal reveal-delay-2" data-interest="Brand"><span class="small">→ For Brand Teams</span>Join as a Brand</button>
+      <button class="cta-option reveal reveal-delay-3" data-interest="Investor"><span class="small">→ For Capital</span>Investor Inquiry</button>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h2>Let's get you on the map.</h2>
+        <p>Tell us who you are and what you're trying to unlock. We'll route you to the right team within one business day.</p>
+        <ul>
+          <li>Direct intros for campuses, stadiums, and event partners</li>
+          <li>Pilots in 30 days, contracted activations in 60</li>
+          <li>Investor materials available under NDA</li>
+          <li>Headquarters &middot; Network &middot; Worldwide</li>
+        </ul>
+      </div>
+
+      <form class="form reveal reveal-delay-2" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label for="f-company">Company</label>
+            <input id="f-company" name="company" type="text" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="f-role">Role</label>
+            <input id="f-role" name="role" type="text" autocomplete="organization-title" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-interest">Interest</label>
+          <select id="f-interest" name="interest" required>
+            <option value="">Select an interest</option>
+            <option>Brand</option>
+            <option>Campus</option>
+            <option>Event</option>
+            <option>Telecom</option>
+            <option>Investor</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-message">Message</label>
+          <textarea id="f-message" name="message" placeholder="What footprint, audience, or thesis are you bringing?"></textarea>
+        </div>
+        <div class="form-success" id="formSuccess">Thanks &mdash; we received your message. We'll be in touch within one business day.</div>
+        <div class="submit-row">
+          <span class="form-note">By submitting you agree to be contacted by the DROPZ team.</span>
+          <button type="submit" class="btn btn-primary">Send <span class="arrow">→</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ====================== FOOTER ====================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand"><img src="dropz-wordmark-white.png" alt="DROPZ" class="brand-mark" /><span class="sub">Spatial Media</span></a>
+        <p>Programmable digital real estate for the real world. Movement &rarr; Engagement &rarr; Intelligence &rarr; Performance.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Platform</h5>
+        <ul>
+          <li><a href="#what">What is DROPZ</a></li>
+          <li><a href="#product">Product</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#business">Business model</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#thesis">Thesis</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#gtm">Go-to-market</a></li>
+          <li><a href="#vision">Vision</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="#contact">Partner with us</a></li>
+          <li><a href="#contact">Integrate SDK</a></li>
+          <li><a href="#contact">Investor inquiry</a></li>
+          <li><a href="mailto:hello@dropz.example">hello@dropz.example</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="yr"></span> DROPZ. All rights reserved.</span>
+      <div class="socials">
+        <a href="#" aria-label="X / Twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21.5l-7.5 8.57L22.5 22h-6.86l-5.36-6.94L4.16 22H1l8.07-9.21L1 2h6.95l4.83 6.34L18.244 2zm-1.2 18h1.9L7.04 4H5.04l12.004 16z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm6 0h3.6v1.7h.05c.5-.94 1.7-1.95 3.5-1.95 3.75 0 4.45 2.47 4.45 5.68V21h-4v-5.4c0-1.3 0-3-1.85-3-1.85 0-2.15 1.45-2.15 2.9V21H9V9z"/></svg></a>
+        <a href="#" aria-label="GitHub"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.21.09 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.64.25 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0 0 12 .5z"/></svg></a>
+        <a href="#" aria-label="Discord"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.32 4.36A19.79 19.79 0 0 0 16.07 3l-.2.36a14.67 14.67 0 0 1 4.27 1.36c-2.43-1.13-5.03-1.36-7.65-1.36s-5.21.23-7.65 1.36A14.67 14.67 0 0 1 9.13 3.36L8.93 3a19.79 19.79 0 0 0-4.25 1.36C2.06 8.13 1.34 11.79 1.7 15.4A19.9 19.9 0 0 0 7.7 18.5l.5-.7a13.5 13.5 0 0 1-2.07-1c.18-.13.35-.27.52-.4 4.04 1.88 8.41 1.88 12.4 0 .17.13.34.27.52.4-.66.39-1.35.72-2.07 1l.5.7a19.9 19.9 0 0 0 6-3.1c.43-4.05-.66-7.67-3.68-11.04zM8.5 13.5c-1.18 0-2.15-1.07-2.15-2.4S7.3 8.7 8.5 8.7c1.2 0 2.17 1.07 2.15 2.4 0 1.33-.96 2.4-2.15 2.4zm7 0c-1.18 0-2.15-1.07-2.15-2.4s.97-2.4 2.15-2.4c1.2 0 2.17 1.07 2.15 2.4 0 1.33-.95 2.4-2.15 2.4z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   Sticky header shadow on scroll
+   ========================================================= */
+const header = document.getElementById('siteHeader');
+const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* =========================================================
+   Mobile nav toggle
+   ========================================================= */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(open));
+});
+navLinks.addEventListener('click', (e) => {
+  if (e.target.tagName === 'A') {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+});
+
+/* =========================================================
+   Reveal-on-scroll
+   ========================================================= */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
+  });
+}, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+revealEls.forEach((el) => io.observe(el));
+
+/* =========================================================
+   Animated stat counters
+   ========================================================= */
+const counters = document.querySelectorAll('.stat .num[data-count]');
+const cio = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    const wrap = entry.target;
+    const target = parseInt(wrap.dataset.count, 10);
+    const out = wrap.querySelector('.counter');
+    const duration = 1400;
+    const start = performance.now();
+    const tick = (t) => {
+      const p = Math.min((t - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      out.textContent = Math.round(target * eased).toString();
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    cio.unobserve(wrap);
+  });
+}, { threshold: 0.4 });
+counters.forEach((c) => cio.observe(c));
+
+/* =========================================================
+   CTA option → preselect interest
+   ========================================================= */
+document.querySelectorAll('.cta-option').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const v = btn.dataset.interest;
+    const sel = document.getElementById('f-interest');
+    if (v && sel) {
+      [...sel.options].forEach((o) => { if (o.value === v || o.textContent === v) sel.value = o.value || o.textContent; });
+    }
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => document.getElementById('f-name').focus(), 600);
+  });
+});
+
+/* =========================================================
+   Contact form (client-side only — wire to backend later)
+   ========================================================= */
+const form = document.getElementById('contactForm');
+const success = document.getElementById('formSuccess');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = document.getElementById('f-name');
+  const email = document.getElementById('f-email');
+  const interest = document.getElementById('f-interest');
+  let valid = true;
+  [name, email, interest].forEach((el) => {
+    if (!el.value || (el.type === 'email' && !/^\S+@\S+\.\S+$/.test(el.value))) {
+      el.style.borderColor = 'var(--magenta)';
+      valid = false;
+    } else {
+      el.style.borderColor = '';
+    }
+  });
+  if (!valid) return;
+  // No backend in this static drop. Replace with fetch('/api/lead', ...).
+  const payload = Object.fromEntries(new FormData(form).entries());
+  console.log('DROPZ lead:', payload);
+  success.classList.add('show');
+  form.reset();
+  setTimeout(() => success.classList.remove('show'), 6000);
+});
+
+/* =========================================================
+   Footer year
+   ========================================================= */
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
