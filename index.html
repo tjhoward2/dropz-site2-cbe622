@@ -4,11 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#05060f" />
-<title>DROPZ — Programmable Digital Real Estate for the Real World</title>
+<title>DROPZ · Programmable Digital Real Estate for the Real World</title>
 <meta name="description" content="DROPZ transforms physical environments into programmable digital real estate. Infrastructure for monetizing presence across campuses, events, stadiums, cities, and telecom apps." />
 
 <!-- Open Graph -->
-<meta property="og:title" content="DROPZ — Monetizing Presence" />
+<meta property="og:title" content="DROPZ · Monetizing Presence" />
 <meta property="og:description" content="Programmable digital real estate for the real world." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="og-image.png" />
@@ -28,10 +28,10 @@
 
 <style>
 /* =========================================================
-   DROPZ — Design System
+   DROPZ · Design System
    ========================================================= */
 :root {
-  /* Palette — DROPZ v1: deep navy-black + cyan/violet/magenta accents */
+  /* Palette · DROPZ v1: deep navy-black + cyan/violet/magenta accents */
   --bg-0: #05060f;
   --bg-1: #0a0d1a;
   --bg-2: #11142a;
@@ -70,7 +70,7 @@
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Layout */
-  --container: 1200px;
+  --container: 1140px;
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
@@ -133,12 +133,12 @@ main, header, footer, section { position: relative; z-index: 1; }
    Typography
    ========================================================= */
 h1, h2, h3, h4 { font-family: var(--font-display); color: var(--ink-100); margin: 0 0 0.5em; line-height: 1.1; letter-spacing: -0.02em; }
-h1 { font-family: var(--font-brand); font-size: clamp(2.2rem, 4.6vw, 4rem); font-weight: 800; line-height: 0.98; letter-spacing: 0; text-transform: uppercase; }
-h2 { font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 600; }
-h3 { font-size: clamp(1.25rem, 1.8vw, 1.5rem); font-weight: 600; letter-spacing: -0.01em; }
-h4 { font-size: 1.05rem; font-weight: 600; letter-spacing: -0.005em; }
+h1 { font-family: var(--font-brand); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; line-height: 1; letter-spacing: 0; text-transform: uppercase; }
+h2 { font-size: clamp(1.65rem, 2.9vw, 2.4rem); font-weight: 600; }
+h3 { font-size: clamp(1.15rem, 1.6vw, 1.35rem); font-weight: 600; letter-spacing: -0.01em; }
+h4 { font-size: 1rem; font-weight: 600; letter-spacing: -0.005em; }
 p { margin: 0 0 1em; color: var(--ink-300); }
-.lead { font-size: clamp(1.05rem, 1.4vw, 1.25rem); color: var(--ink-200); line-height: 1.55; }
+.lead { font-size: clamp(0.98rem, 1.2vw, 1.1rem); color: var(--ink-200); line-height: 1.55; }
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -170,8 +170,8 @@ p { margin: 0 0 1em; color: var(--ink-300); }
   margin: 0 auto;
   padding: 0 24px;
 }
-section { padding: clamp(80px, 10vw, 140px) 0; }
-.section-head { max-width: 760px; margin: 0 auto clamp(48px, 6vw, 80px); text-align: center; }
+section { padding: clamp(64px, 8vw, 110px) 0; }
+.section-head { max-width: 720px; margin: 0 auto clamp(36px, 5vw, 60px); text-align: center; }
 .section-head .eyebrow { margin-bottom: 18px; }
 
 /* =========================================================
@@ -546,7 +546,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 /* =========================================================
    Platform / Features
    ========================================================= */
-/* Platform showcase — app preview alongside copy */
+/* Platform showcase · app preview alongside copy */
 .platform-showcase {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
@@ -586,60 +586,75 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 
 .platform-showcase-visual {
   position: relative;
-  display: flex; justify-content: center; align-items: center;
-  min-height: 600px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  gap: 22px;
+  padding: 20px 0;
 }
-.platform-showcase-visual img {
-  position: relative; z-index: 2;
-  max-width: 360px; width: 100%; height: auto;
-  border-radius: 42px;
+.phone-frame {
+  position: relative;
+  z-index: 2;
+  max-width: 270px;
+  width: 100%;
+}
+.phone-frame img {
+  display: block;
+  width: 100%; height: auto;
+  border-radius: 38px;
   filter:
     drop-shadow(0 40px 80px rgba(124, 92, 255, 0.35))
     drop-shadow(0 0 60px rgba(0, 240, 255, 0.18));
 }
 .phone-glow {
   position: absolute;
-  width: 480px; height: 480px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 440px; height: 440px;
   border-radius: 50%;
   background:
-    radial-gradient(circle, rgba(124, 92, 255, 0.35), transparent 60%),
-    radial-gradient(circle at 30% 70%, rgba(0, 240, 255, 0.22), transparent 65%);
-  filter: blur(40px);
+    radial-gradient(circle, rgba(124, 92, 255, 0.32), transparent 60%),
+    radial-gradient(circle at 30% 70%, rgba(0, 240, 255, 0.20), transparent 65%);
+  filter: blur(42px);
   z-index: 1;
+  pointer-events: none;
   animation: phoneGlowPulse 6s ease-in-out infinite;
 }
 @keyframes phoneGlowPulse {
-  0%, 100% { transform: scale(1); opacity: 0.85; }
-  50% { transform: scale(1.08); opacity: 1; }
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.85; }
+  50% { transform: translate(-50%, -50%) scale(1.06); opacity: 1; }
 }
 .phone-hud {
   position: absolute; z-index: 3;
-  background: rgba(10, 13, 26, 0.78);
+  background: rgba(10, 13, 26, 0.82);
   backdrop-filter: blur(10px);
   border: 1px solid var(--line-strong);
-  border-radius: 12px;
-  padding: 10px 14px;
-  font-family: var(--font-mono); font-size: 0.74rem;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-family: var(--font-mono); font-size: 0.7rem;
   color: var(--ink-100);
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 8px;
   box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.4);
+  white-space: nowrap;
 }
-.phone-hud-tl { top: 8%; left: -4%; }
-.phone-hud-br { bottom: 12%; right: -4%; }
+.phone-hud-tl { top: 14%; left: -38%; }
+.phone-hud-br { bottom: 22%; right: -38%; }
 .mockup-caption {
-  position: absolute; bottom: -28px; left: 0; right: 0;
+  position: relative;
   text-align: center; z-index: 3;
-  font-family: var(--font-mono); font-size: 0.68rem;
-  letter-spacing: 0.14em; text-transform: uppercase;
+  font-family: var(--font-mono); font-size: 0.66rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--ink-400);
 }
 
+@media (max-width: 1100px) {
+  .phone-hud-tl { left: -22%; }
+  .phone-hud-br { right: -22%; }
+}
 @media (max-width: 880px) {
   .platform-showcase { grid-template-columns: 1fr; }
-  .platform-showcase-visual { min-height: 540px; }
-  .phone-glow { width: 380px; height: 380px; }
-  .phone-hud-tl { left: 4%; }
-  .phone-hud-br { right: 4%; }
+  .phone-frame { max-width: 260px; }
+  .phone-glow { width: 360px; height: 360px; }
+  .phone-hud-tl { top: -2%; left: 0; }
+  .phone-hud-br { bottom: -2%; right: 0; }
 }
 
 .feature-grid {
@@ -931,15 +946,15 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 }
 .vision .big-statement {
   font-family: var(--font-brand);
-  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  font-size: clamp(1.85rem, 4vw, 3.5rem);
   font-weight: 800;
-  line-height: 0.98;
+  line-height: 1.02;
   letter-spacing: 0.005em;
   text-transform: uppercase;
   background: var(--grad-text);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  max-width: 1100px;
-  margin: 0 auto 48px;
+  max-width: 1000px;
+  margin: 0 auto 40px;
 }
 .vision-points {
   display: grid;
@@ -1172,13 +1187,13 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
           <span class="line">Monetizing Presence.</span>
           <span class="line accent">Owning the Digital Layer of the Real World.</span>
         </h1>
-        <p class="lead">DROPZ is the spatial engagement and monetization infrastructure for the next era of global gathering. Every major event, stadium, campus, and city center is an untapped interaction &mdash; now unlocked.</p>
+        <p class="lead">DROPZ is the spatial engagement and monetization infrastructure for the next era of global gathering. Every major event, stadium, campus, and city center is an untapped interaction. Now unlocked.</p>
         <div class="hero-ctas">
           <a href="#contact" class="btn btn-primary">Partner With Us <span class="arrow">→</span></a>
           <a href="#product" class="btn btn-secondary">See the Platform</a>
         </div>
         <div class="hero-meta">
-          <span><span class="dot">●</span> Live network &mdash; Beta</span>
+          <span><span class="dot">●</span> Live network · Beta</span>
           <span><span class="dot">●</span> SOC&nbsp;2 roadmap</span>
           <span><span class="dot">●</span> SDK-ready</span>
         </div>
@@ -1355,9 +1370,9 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 <section id="what">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">01 — What is DROPZ</span>
+      <span class="eyebrow">01 · What is DROPZ</span>
       <h2 class="text-grad">Pokemon Go for Brands. <br/>Built as infrastructure.</h2>
-      <p class="lead">DROPZ is a programmable engagement layer where users discover digital drops in real-world locations &mdash; and brands monetize attention, movement, and interaction.</p>
+      <p class="lead">DROPZ is a programmable engagement layer where users discover digital drops in real-world locations, and brands monetize attention, movement, and interaction.</p>
     </div>
 
     <div class="what-grid">
@@ -1402,7 +1417,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
           </div>
         </div>
         <div class="diff-callout">
-          <strong>Key differentiation —</strong> DROPZ is not another ad network. It is infrastructure for monetizing the digital layer of physical space.
+          <strong>Key differentiation:</strong> DROPZ is not another ad network. It is infrastructure for monetizing the digital layer of physical space.
         </div>
       </div>
     </div>
@@ -1413,28 +1428,30 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 <section id="product" style="background: linear-gradient(180deg, transparent, rgba(124, 92, 255, 0.03), transparent);">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">02 — Platform</span>
+      <span class="eyebrow">02 · Platform</span>
       <h2>An SDK. Not another app.</h2>
-      <p class="lead">DROPZ is infrastructure delivered as an embeddable SDK. Partners ship spatial engagement inside their existing apps &mdash; campus apps, telecom apps, fan apps, media apps &mdash; in days, not quarters.</p>
+      <p class="lead">DROPZ is infrastructure delivered as an embeddable SDK. Partners ship spatial engagement inside their existing apps: campus, telecom, fan, and media apps. In days, not quarters.</p>
     </div>
 
     <div class="platform-showcase">
       <div class="platform-showcase-copy reveal">
         <span class="eyebrow" style="margin-bottom:18px;">SDK · Reference experience</span>
         <h3>The experience your app can power.</h3>
-        <p>DROPZ ships as an embeddable SDK. We don't compete with your app &mdash; we power it. The mockup shown is a reference of what a partner app, campus app, or telecom client can deliver to their users in days, using our map, drops, and rewards primitives.</p>
+        <p>DROPZ ships as an embeddable SDK. We don't compete with your app. We power it. The mockup shown is a reference of what a partner app, campus app, or telecom client can deliver to their users in days, using our map, drops, and rewards primitives.</p>
         <ul class="platform-features">
-          <li><span class="dot"></span><span><strong>Branded avatar UX</strong> &mdash; identity and progression that lives inside your app, not ours.</span></li>
-          <li><span class="dot"></span><span><strong>Location-anchored drops</strong> &mdash; brand pins, point values, and live engagement zones rendered through our SDK.</span></li>
-          <li><span class="dot"></span><span><strong>Nearby Drop notifications</strong> &mdash; live-radius alerts convert foot traffic into measurable engagement, fired from your app.</span></li>
-          <li><span class="dot"></span><span><strong>Rewards economy</strong> &mdash; points, redemptions, and brand activations attributed end-to-end.</span></li>
+          <li><span class="dot"></span><span><strong>Branded avatar UX:</strong> identity and progression that lives inside your app, not ours.</span></li>
+          <li><span class="dot"></span><span><strong>Location-anchored drops:</strong> brand pins, point values, and live engagement zones rendered through our SDK.</span></li>
+          <li><span class="dot"></span><span><strong>Nearby Drop notifications:</strong> live-radius alerts convert foot traffic into measurable engagement, fired from your app.</span></li>
+          <li><span class="dot"></span><span><strong>Rewards economy:</strong> points, redemptions, and brand activations attributed end-to-end.</span></li>
         </ul>
       </div>
       <div class="platform-showcase-visual reveal reveal-delay-2">
         <div class="phone-glow"></div>
-        <img src="app-preview.png" alt="Reference mockup of a partner app embedding the DROPZ SDK: avatar, location-based brand drops, and rewards" />
-        <div class="phone-hud phone-hud-tl"><span class="pulse-dot"></span> SDK · Drops nearby</div>
-        <div class="phone-hud phone-hud-br"><span class="pulse-dot"></span> +250 pts earned</div>
+        <div class="phone-frame">
+          <img src="app-preview.png" alt="Reference mockup of a partner app embedding the DROPZ SDK: avatar, location-based brand drops, and rewards" />
+          <div class="phone-hud phone-hud-tl"><span class="pulse-dot"></span> SDK · Drops nearby</div>
+          <div class="phone-hud phone-hud-br"><span class="pulse-dot"></span> +250 pts earned</div>
+        </div>
         <div class="mockup-caption">Reference UI · Partner SDK implementation (mockup)</div>
       </div>
     </div>
@@ -1454,7 +1471,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
         <h3>SDK Integration</h3>
-        <p>The primary delivery model. Partners embed DROPZ inside existing apps in days, not quarters. iOS, Android, Web. We power your app — we never compete with it.</p>
+        <p>The primary delivery model. Partners embed DROPZ inside existing apps in days, not quarters. iOS, Android, Web. We power your app. We never compete with it.</p>
       </div>
       <div class="card reveal reveal-delay-2">
         <span class="feature-tag">Layer 03</span>
@@ -1470,7 +1487,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
         </div>
         <h3>Personalization Engine</h3>
-        <p>AI-driven maps that adapt to user behavior, interests, and context. Every map is unique &mdash; ranked, scored, and optimized continuously.</p>
+        <p>AI-driven maps that adapt to user behavior, interests, and context. Every map is unique. Ranked, scored, and optimized continuously.</p>
       </div>
       <div class="card span-2 reveal reveal-delay-1">
         <span class="feature-tag">Layer 05</span>
@@ -1478,7 +1495,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
         </div>
         <h3>Avatar &amp; UX Layer</h3>
-        <p>Branded avatars, rewards, quests, drops, and collectibles unify the consumer experience. Guided, gamified, and instrumented &mdash; so every interaction is measurable and brand-safe.</p>
+        <p>Branded avatars, rewards, quests, drops, and collectibles unify the consumer experience. Guided, gamified, and instrumented, so every interaction is measurable and brand-safe.</p>
       </div>
     </div>
   </div>
@@ -1488,7 +1505,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 <section id="solutions">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">03 — Solutions</span>
+      <span class="eyebrow">03 · Solutions</span>
       <h2>Where DROPZ goes live.</h2>
       <p class="lead">From the first dorm to the last city block. The same infrastructure scales across every dense, monetizable footprint.</p>
     </div>
@@ -1526,7 +1543,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-7h6v7"/></svg>
         </div>
         <h3>Cities</h3>
-        <p>Urban digital real estate, tourism trails, local commerce, and smart city engagement &mdash; programmable per district, per block.</p>
+        <p>Urban digital real estate, tourism trails, local commerce, and smart city engagement. Programmable per district, per block.</p>
         <div class="monetize">Monetization: <span>District Licensing · Tourism Quests · Local SMB CPC</span></div>
       </div>
 
@@ -1535,7 +1552,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M5 6h14M5 18h14"/><circle cx="5" cy="6" r="1.5"/><circle cx="5" cy="12" r="1.5"/><circle cx="5" cy="18" r="1.5"/></svg>
         </div>
         <h3>Telecom Apps</h3>
-        <p>SDK distribution at carrier scale &mdash; subscriber engagement, location-based monetization, and a new revenue line on existing rails.</p>
+        <p>SDK distribution at carrier scale. Subscriber engagement, location-based monetization, and a new revenue line on existing rails.</p>
         <div class="monetize">Monetization: <span>SDK Revenue Share · Subscriber CPA · Data Licensing</span></div>
       </div>
 
@@ -1555,7 +1572,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 <section id="business" style="background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.025), transparent);">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">04 — Business Model</span>
+      <span class="eyebrow">04 · Business Model</span>
       <h2>Recurring revenue. Software margins. Real-world inventory.</h2>
       <p class="lead">Five revenue streams compound on the same network. The more locations and partners connect, the more inventory becomes monetizable.</p>
     </div>
@@ -1573,7 +1590,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
         <div class="revenue-row reveal reveal-delay-1">
           <span class="badge">02</span>
           <div>
-            <h4>CPC — Cost per Click</h4>
+            <h4>CPC · Cost per Click</h4>
             <p>Performance billing on map taps, drop opens, and route clicks.</p>
           </div>
           <span class="price">$0.40 – $1.20</span>
@@ -1581,7 +1598,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
         <div class="revenue-row reveal reveal-delay-2">
           <span class="badge">03</span>
           <div>
-            <h4>CPA — Cost per Acquisition</h4>
+            <h4>CPA · Cost per Acquisition</h4>
             <p>Attributable redemptions, sign-ups, and in-store conversions.</p>
           </div>
           <span class="price">$3 – $25</span>
@@ -1627,37 +1644,37 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 <section id="thesis">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">05 — Digital Real Estate Thesis</span>
+      <span class="eyebrow">05 · Digital Real Estate Thesis</span>
       <h2 class="text-grad">A new asset class hiding in plain sight.</h2>
       <p class="lead">Physical inventory is finite. Digital inventory layered over physical space is expandable, programmable, and ownable.</p>
     </div>
 
     <div class="thesis-grid">
       <div class="thesis-card reveal">
-        <span class="num">// 01 — INVENTORY</span>
+        <span class="num">// 01 · INVENTORY</span>
         <h3>Physical ad space is capped. Digital isn't.</h3>
-        <p>You cannot add billboards to a stadium concourse. You can add infinite addressable digital drops to the same square foot &mdash; and re-program them daily.</p>
+        <p>You cannot add billboards to a stadium concourse. You can add infinite addressable digital drops to the same square foot, and re-program them daily.</p>
       </div>
       <div class="thesis-card reveal reveal-delay-1">
-        <span class="num">// 02 — OWNERSHIP</span>
+        <span class="num">// 02 · OWNERSHIP</span>
         <h3>Ownership of a digital layer.</h3>
-        <p>DROPZ creates exclusive, durable ownership of the digital layer over real-world environments &mdash; campuses, venues, blocks &mdash; enforced through the platform.</p>
+        <p>DROPZ creates exclusive, durable ownership of the digital layer over real-world environments (campuses, venues, blocks), enforced through the platform.</p>
       </div>
       <div class="thesis-card reveal reveal-delay-2">
-        <span class="num">// 03 — RECURRING</span>
+        <span class="num">// 03 · RECURRING</span>
         <h3>Locations generate recurring income.</h3>
         <p>Every active location becomes a recurring revenue node. Stack thousands of nodes and you have a portfolio of cash-flowing digital plots.</p>
       </div>
       <div class="thesis-card reveal">
-        <span class="num">// 04 — MARGIN</span>
+        <span class="num">// 04 · MARGIN</span>
         <h3>Real estate economics. Software margins.</h3>
         <p>Comparable to commercial real estate, but with programmable inventory, software margins, and a near-zero marginal cost to add a new location.</p>
       </div>
       <div class="thesis-card featured reveal reveal-delay-1">
-        <span class="num">// 05 — STRUCTURE</span>
+        <span class="num">// 05 · STRUCTURE</span>
         <h3>Foundation for a future DREIT.</h3>
-        <p>As the network of locations and recurring contracts compounds, DROPZ provides the foundation for a Digital Real Estate Investment Trust &mdash; the first portfolio of programmable physical-world digital plots.</p>
-        <div class="dreit-badge"><span style="color:var(--cyan)">●</span> DREIT &mdash; Digital Real Estate Investment Trust</div>
+        <p>As the network of locations and recurring contracts compounds, DROPZ provides the foundation for a Digital Real Estate Investment Trust. The first portfolio of programmable physical-world digital plots.</p>
+        <div class="dreit-badge"><span style="color:var(--cyan)">●</span> DREIT · Digital Real Estate Investment Trust</div>
       </div>
     </div>
   </div>
@@ -1667,7 +1684,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 <section id="cases" style="background: linear-gradient(180deg, transparent, rgba(255, 62, 165, 0.03), transparent);">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">06 — Proof</span>
+      <span class="eyebrow">06 · Proof</span>
       <h2>Activation patterns that already work.</h2>
       <p class="lead">Example metrics drawn from comparable activations and our internal modeling. Real numbers, conservative assumptions.</p>
     </div>
@@ -1679,23 +1696,23 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
         <div class="metric-label">Student adoption (modeled)</div>
         <h3>The 8-week campus rollout.</h3>
         <p>A university rollout drives 35% student adoption through rewards, ambassador campaigns, and location-based brand drops across dining, athletics, and Greek life.</p>
-        <div class="ex">EX. — Internal model · 12,000-student footprint</div>
+        <div class="ex">EX. · Internal model · 12,000-student footprint</div>
       </div>
       <div class="case reveal reveal-delay-1">
         <span class="case-tag">Festival</span>
         <div class="metric">2.4×</div>
         <div class="metric-label">Sponsor booth traffic lift</div>
         <h3>Event scavenger hunt.</h3>
-        <p>Festival attendees unlock sponsor rewards by visiting digital zones &mdash; increasing booth traffic, dwell time, and measurable brand engagement across the weekend.</p>
-        <div class="ex">EX. — Internal model · 80K attendee event</div>
+        <p>Festival attendees unlock sponsor rewards by visiting digital zones, increasing booth traffic, dwell time, and measurable brand engagement across the weekend.</p>
+        <div class="ex">EX. · Internal model · 80K attendee event</div>
       </div>
       <div class="case reveal reveal-delay-2">
         <span class="case-tag">Brand Engagement</span>
         <div class="metric">100K+</div>
         <div class="metric-label">Monthly clicks &amp; redemptions</div>
         <h3>Foot traffic → measurable ROI.</h3>
-        <p>Push notifications and map-based drops convert passive foot traffic into measurable clicks, redemptions, and acquisitions &mdash; closing the loop on physical-world advertising.</p>
-        <div class="ex">EX. — Per-activation target · single market</div>
+        <p>Push notifications and map-based drops convert passive foot traffic into measurable clicks, redemptions, and acquisitions. Closing the loop on physical-world advertising.</p>
+        <div class="ex">EX. · Per-activation target · single market</div>
       </div>
     </div>
   </div>
@@ -1705,9 +1722,9 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 <section id="partners">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">07 — Partners &amp; Ecosystem</span>
+      <span class="eyebrow">07 · Partners &amp; Ecosystem</span>
       <h2>The network compounds.</h2>
-      <p class="lead">Every partner that connects to DROPZ &mdash; tech, brand, distribution, location &mdash; makes the next partner more valuable.</p>
+      <p class="lead">Every partner that connects to DROPZ across tech, brand, distribution, and location makes the next partner more valuable.</p>
     </div>
 
     <div class="eco-grid">
@@ -1762,9 +1779,9 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 <section id="gtm" style="background: linear-gradient(180deg, transparent, rgba(124, 92, 255, 0.05), transparent);">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">08 — Go-to-Market</span>
+      <span class="eyebrow">08 · Go-to-Market</span>
       <h2>Density first. Then everywhere.</h2>
-      <p class="lead">We start in the densest, most-instrumented physical environments on earth &mdash; college campuses &mdash; and earn our way into the rest.</p>
+      <p class="lead">We start in the densest, most-instrumented physical environments on earth: college campuses. We earn our way into the rest.</p>
     </div>
 
     <div class="gtm-strategies">
@@ -1795,7 +1812,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
     <div class="roadmap">
       <div class="phase reveal">
         <div class="dot"></div>
-        <div class="label">Phase 1 — Now</div>
+        <div class="label">Phase 1 · Now</div>
         <h4>Campuses</h4>
         <p>Beachhead. Density, virality, repeatable playbook.</p>
       </div>
@@ -1825,7 +1842,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 <section class="vision" id="vision">
   <div class="container">
     <div class="section-head reveal" style="margin-bottom: 56px;">
-      <span class="eyebrow">09 — Vision</span>
+      <span class="eyebrow">09 · Vision</span>
     </div>
     <h2 class="big-statement reveal">"DROPZ will own the digital world inside physical environments."</h2>
     <div class="vision-points">
@@ -1862,9 +1879,9 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
 <section class="final-cta" id="contact">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">10 — Get in</span>
+      <span class="eyebrow">10 · Get in</span>
       <h2 class="text-grad">Choose your way in.</h2>
-      <p class="lead">Brands, campuses, events, telecom, investors. The platform fits all of them &mdash; pick the path closest to you.</p>
+      <p class="lead">Brands, campuses, events, telecom, investors. The platform fits all of them. Pick the path closest to you.</p>
     </div>
 
     <div class="cta-options">
@@ -1923,7 +1940,7 @@ section { padding: clamp(80px, 10vw, 140px) 0; }
           <label for="f-message">Message</label>
           <textarea id="f-message" name="message" placeholder="What footprint, audience, or thesis are you bringing?"></textarea>
         </div>
-        <div class="form-success" id="formSuccess">Thanks &mdash; we received your message. We'll be in touch within one business day.</div>
+        <div class="form-success" id="formSuccess">Thanks. We received your message. We'll be in touch within one business day.</div>
         <div class="submit-row">
           <span class="form-note">By submitting you agree to be contacted by the DROPZ team.</span>
           <button type="submit" class="btn btn-primary">Send <span class="arrow">→</span></button>
@@ -2062,7 +2079,7 @@ document.querySelectorAll('.cta-option').forEach((btn) => {
 });
 
 /* =========================================================
-   Contact form (client-side only — wire to backend later)
+   Contact form (client-side only · wire to backend later)
    ========================================================= */
 const form = document.getElementById('contactForm');
 const success = document.getElementById('formSuccess');
